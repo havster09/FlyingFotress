@@ -11,6 +11,7 @@ import com.flyingfotress.game.FlyingFotress;
 import com.flyingfotress.game.TextureManager;
 import com.flyingfotress.game.camera.OrthoCamera;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,7 +23,7 @@ public class Player extends Entity implements InputProcessor {
     private final OrthoCamera camera;
     public String message;
 
-    private Map<Integer, GunInfo> gunners = new HashMap<Integer, GunInfo>();
+    private ArrayList<GunInfo> gunners = new ArrayList<GunInfo>();
     private Map<Integer, TouchInfo> touches = new HashMap<Integer, TouchInfo>();
     public BitmapFont font;
 
@@ -39,8 +40,15 @@ public class Player extends Entity implements InputProcessor {
             touches.put(i, new TouchInfo());
         }
 
-        for(int i = 0; i < 4; i++) {
-            gunners.put(i, new GunInfo());
+        ArrayList<String> gunPositions = new ArrayList<String>();
+
+        gunPositions.add("headGunner");
+        gunPositions.add("tailGunner");
+        gunPositions.add("leftWaistGunner");
+        gunPositions.add("rightWaistGunner");
+
+        for(String g: gunPositions) {
+            gunners.add(new GunInfo(g));
         }
     }
 
@@ -82,24 +90,6 @@ public class Player extends Entity implements InputProcessor {
         } else {
             setDirection(0, 0);
         }
-
-        /*if(Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-            if(currentTimeMillis() - lastFire >= MathUtils.random(10, 150)) {
-                entityManager.addEntity(new Bullet(pos.cpy().add(TextureManager.PLAYER.getWidth()/2 - TextureManager.BULLET.getWidth()/2, TextureManager.PLAYER.getHeight())));
-                lastFire = currentTimeMillis();
-            }
-        }*/
-
-        // autofire
-
-        /*if (currentTimeMillis() - lastFire >= MathUtils.random(100, 350)) {
-            if(touches.size() > 0) {
-                entityManager.addEntity(new Bullet(pos.cpy().add(TextureManager.PLAYER.getWidth() / 2 - TextureManager.BULLET.getWidth() / 2, TextureManager.PLAYER.getHeight())));
-                lastFire = currentTimeMillis();
-            }
-        }*/
-
-        // touch fire
 
         // debug
         message = "";
@@ -178,22 +168,18 @@ public class Player extends Entity implements InputProcessor {
 
             if(screenX <  this.getPosition().x + 300 && screenX > this.getPosition().x + TextureManager.PLAYER.getWidth() - 300) {
                 if(screenY < Gdx.graphics.getHeight()/2) {
-                    gunners.get(pointer).name = "headGunner";
-                    gunners.get(pointer).isFiring = true;
+                    gunners.get(0).isFiring = !gunners.get(0).isFiring;
                 }
                 else {
-                    gunners.get(pointer).name = "tailGunner";
-                    gunners.get(pointer).isFiring = true;
+                    gunners.get(1).isFiring = !gunners.get(1).isFiring;
                 }
             }
             else if(screenY >  this.getPosition().y - 300 && screenY < this.getPosition().y + TextureManager.PLAYER.getHeight() + 300){
                 if(screenX < Gdx.graphics.getWidth()/2) {
-                    gunners.get(pointer).name = "leftWaistGunner";
-                    gunners.get(pointer).isFiring = true;
+                    gunners.get(2).isFiring = !gunners.get(2).isFiring;
                 }
                 else {
-                    gunners.get(pointer).name = "rightWaistGunner";
-                    gunners.get(pointer).isFiring = true;
+                    gunners.get(3).isFiring = !gunners.get(3).isFiring;
                 }
             }
         }
@@ -202,13 +188,7 @@ public class Player extends Entity implements InputProcessor {
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        if(pointer < 5) {
-            touches.get(pointer).touchX = 0;
-            touches.get(pointer).touchY = 0;
-            touches.get(pointer).touched = false;
-            gunners.get(pointer).isFiring = false;
-        }
-        return true;
+        return false;
     }
 
     @Override

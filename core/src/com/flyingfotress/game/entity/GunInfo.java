@@ -6,4 +6,8 @@ public class GunInfo {
     public long ammoCount = 5000;
     public long lastFire = 0;
     public boolean isFiring = false;
+
+    public GunInfo(String name) {
+        this.name = name;
+    }
 }
