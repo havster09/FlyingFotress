@@ -18,8 +18,8 @@ import java.util.Map;
 import static java.lang.System.currentTimeMillis;
 
 public class Player extends Entity implements InputProcessor {
-    public static final int ACCELERATOR_MULTIPLIER = 100;
-    private long lastFire;
+    public static final int ACCELERATOR_MULTIPLIER = 50;
+    public static final int GUNNER_TOUCH_BUFFER = 200;
     private final OrthoCamera camera;
     public String message;
 
@@ -56,18 +56,31 @@ public class Player extends Entity implements InputProcessor {
     public void update() {
         float accelX = Gdx.input.getAccelerometerX();
 
-        float highestRightX = 1f;
-        float highestLeftX = -1f;
-        float directionValue;
-        if (accelX > highestRightX) {
-            directionValue = highestLeftX;
-        } else if (accelX < highestLeftX) {
-            directionValue = highestRightX;
-        } else {
+        float highestRightX = -12f;
+        float highestLeftX = 12f;
+        float directionValue = 0f;
+
+        if(accelX < 0) {
+            if (accelX < highestRightX) {
+                directionValue = highestRightX;
+            }
+            else {
+                directionValue = accelX;
+            }
+        }
+        else if(accelX > 0) {
+            if (accelX > highestLeftX) {
+                directionValue = highestLeftX;
+            }
+            else {
+                directionValue = accelX;
+            }
+        }
+        else {
             directionValue = 0f;
         }
 
-        setDirection(directionValue * ACCELERATOR_MULTIPLIER, 0);
+        setDirection(directionValue * -ACCELERATOR_MULTIPLIER, 0);
 
         pos.add(direction);
 
@@ -166,7 +179,7 @@ public class Player extends Entity implements InputProcessor {
             touches.get(pointer).touchY = screenY;
             touches.get(pointer).touched = true;
 
-            if(screenX <  this.getPosition().x + 300 && screenX > this.getPosition().x + TextureManager.PLAYER.getWidth() - 300) {
+            if(screenX >  Gdx.graphics.getWidth()/2 - GUNNER_TOUCH_BUFFER && screenX < Gdx.graphics.getWidth()/2 + GUNNER_TOUCH_BUFFER) {
                 if(screenY < Gdx.graphics.getHeight()/2) {
                     gunners.get(0).isFiring = !gunners.get(0).isFiring;
                 }
@@ -174,7 +187,7 @@ public class Player extends Entity implements InputProcessor {
                     gunners.get(1).isFiring = !gunners.get(1).isFiring;
                 }
             }
-            else if(screenY >  this.getPosition().y - 300 && screenY < this.getPosition().y + TextureManager.PLAYER.getHeight() + 300){
+            else if(screenY >  Gdx.graphics.getHeight()/2 - GUNNER_TOUCH_BUFFER && screenY < Gdx.graphics.getHeight()/2 + GUNNER_TOUCH_BUFFER){
                 if(screenX < Gdx.graphics.getWidth()/2) {
                     gunners.get(2).isFiring = !gunners.get(2).isFiring;
                 }
