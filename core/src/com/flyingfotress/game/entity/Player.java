@@ -6,7 +6,9 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.flyingfotress.game.FlyingFotress;
 import com.flyingfotress.game.TextureManager;
 import com.flyingfotress.game.camera.OrthoCamera;
@@ -56,8 +58,8 @@ public class Player extends Entity implements InputProcessor {
     public void update() {
         float accelX = Gdx.input.getAccelerometerX();
 
-        float highestRightX = -12f;
-        float highestLeftX = 12f;
+        float highestRightX = -8f;
+        float highestLeftX = 8f;
         float directionValue = 0f;
 
         if(accelX < 0) {
@@ -86,7 +88,7 @@ public class Player extends Entity implements InputProcessor {
 
         int dir = 0;
 
-        if (Gdx.input.isTouched()) {
+        /*if (Gdx.input.isTouched()) {
             Vector2 touch = camera.unprojectCoordinates(Gdx.input.getX(), Gdx.input.getY());
             if (touch.x < FlyingFotress.WIDTH / 2) {
                 dir = 1;
@@ -94,7 +96,7 @@ public class Player extends Entity implements InputProcessor {
                 dir = 2;
             }
 
-        }
+        }*/
 
         if (Gdx.input.isKeyPressed(Input.Keys.A) || dir == 1) {
             setDirection(-100, 0);
@@ -179,20 +181,32 @@ public class Player extends Entity implements InputProcessor {
             touches.get(pointer).touchY = screenY;
             touches.get(pointer).touched = true;
 
-            if(screenX >  Gdx.graphics.getWidth()/2 - GUNNER_TOUCH_BUFFER && screenX < Gdx.graphics.getWidth()/2 + GUNNER_TOUCH_BUFFER) {
-                if(screenY < Gdx.graphics.getHeight()/2) {
-                    gunners.get(0).isFiring = !gunners.get(0).isFiring;
-                }
-                else {
-                    gunners.get(1).isFiring = !gunners.get(1).isFiring;
-                }
+            System.out.println(screenX + ", " + screenY + ", " + this.pos.x + ", " + this.pos.y + ", " + TextureManager.PLAYER.getHeight());
+            Vector3 touch = new Vector3(Gdx.input.getX(),Gdx.input.getY(),0);
+            Rectangle textureBounds = new Rectangle(this.getPosition().x,this.getPosition().y + TextureManager.PLAYER.getHeight(),TextureManager.PLAYER.getWidth(),TextureManager.PLAYER.getHeight());
+
+            if(textureBounds.contains(touch.x,touch.y))
+            {
+                System.out.println("Player Touched");
+
             }
-            else if(screenY >  Gdx.graphics.getHeight()/2 - GUNNER_TOUCH_BUFFER && screenY < Gdx.graphics.getHeight()/2 + GUNNER_TOUCH_BUFFER){
-                if(screenX < Gdx.graphics.getWidth()/2) {
-                    gunners.get(2).isFiring = !gunners.get(2).isFiring;
+            else {
+                if((screenX >  Gdx.graphics.getWidth()/2 - GUNNER_TOUCH_BUFFER && screenX < Gdx.graphics.getWidth()/2 + GUNNER_TOUCH_BUFFER)
+                        || (screenX > this.getPosition().x - GUNNER_TOUCH_BUFFER && screenX < this.getPosition().x + GUNNER_TOUCH_BUFFER)) {
+                    if(screenY < Gdx.graphics.getHeight()/2) {
+                        gunners.get(0).isFiring = !gunners.get(0).isFiring;
+                    }
+                    else {
+                        gunners.get(1).isFiring = !gunners.get(1).isFiring;
+                    }
                 }
-                else {
-                    gunners.get(3).isFiring = !gunners.get(3).isFiring;
+                else if(screenY >  Gdx.graphics.getHeight()/2 - GUNNER_TOUCH_BUFFER && screenY < Gdx.graphics.getHeight()/2 + GUNNER_TOUCH_BUFFER){
+                    if(screenX < Gdx.graphics.getWidth()/2) {
+                        gunners.get(2).isFiring = !gunners.get(2).isFiring;
+                    }
+                    else {
+                        gunners.get(3).isFiring = !gunners.get(3).isFiring;
+                    }
                 }
             }
         }

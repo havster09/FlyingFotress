@@ -16,11 +16,11 @@ public class EntityManager {
     public final Player player;
 
     public EntityManager(int amount, OrthoCamera camera) {
-        player = new Player(new Vector2(FlyingFotress.WIDTH/2 - TextureManager.PLAYER.getWidth()/2, FlyingFotress.HEIGHT/2 - TextureManager.PLAYER.getHeight()), new Vector2(0, 0), this, camera);
+        player = new Player(new Vector2(Gdx.graphics.getWidth()/2 - TextureManager.PLAYER.getWidth()/2, Gdx.graphics.getHeight()/2 - TextureManager.PLAYER.getHeight()), new Vector2(0, 0), this, camera);
         for(int i = 0; i < amount; i++) {
             float x = MathUtils.random(0, FlyingFotress.WIDTH - TextureManager.ENEMY.getWidth());
             float y = MathUtils.random(FlyingFotress.HEIGHT, FlyingFotress.HEIGHT * 2);
-            float speed = MathUtils.random(5, 10);
+            float speed = MathUtils.random(10, 20);
             addEntity(new Enemy(new Vector2(x, y), new Vector2(0, -speed)));
         }
     }
