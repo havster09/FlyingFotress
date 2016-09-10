@@ -4,14 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.flyingfotress.game.FlyingFotress;
 import com.flyingfotress.game.TextureManager;
-import com.flyingfotress.game.camera.OrthoCamera;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,17 +18,17 @@ import java.util.Map;
 
 import static java.lang.System.currentTimeMillis;
 
-public class Player extends Entity implements InputProcessor {
+public class Player extends EntityTexture implements InputProcessor {
     public static final int ACCELERATOR_MULTIPLIER = 50;
     public static final int GUNNER_TOUCH_BUFFER = 200;
-    private final OrthoCamera camera;
+    private final OrthographicCamera camera;
     public String message;
 
     private ArrayList<GunInfo> gunners = new ArrayList<GunInfo>();
     private Map<Integer, TouchInfo> touches = new HashMap<Integer, TouchInfo>();
     public BitmapFont font;
 
-    public Player(Vector2 pos, Vector2 direction, EntityManager entityManager, OrthoCamera camera) {
+    public Player(Vector2 pos, Vector2 direction, EntityManager entityManager, OrthographicCamera camera) {
         super(TextureManager.PLAYER, pos, direction);
         this.entityManager = entityManager;
         this.camera = camera;
@@ -87,16 +86,6 @@ public class Player extends Entity implements InputProcessor {
         pos.add(direction);
 
         int dir = 0;
-
-        /*if (Gdx.input.isTouched()) {
-            Vector2 touch = camera.unprojectCoordinates(Gdx.input.getX(), Gdx.input.getY());
-            if (touch.x < FlyingFotress.WIDTH / 2) {
-                dir = 1;
-            } else {
-                dir = 2;
-            }
-
-        }*/
 
         if (Gdx.input.isKeyPressed(Input.Keys.A) || dir == 1) {
             setDirection(-100, 0);
@@ -201,7 +190,7 @@ public class Player extends Entity implements InputProcessor {
                     }
                 }
                 else if(screenY >  Gdx.graphics.getHeight()/2 - GUNNER_TOUCH_BUFFER && screenY < Gdx.graphics.getHeight()/2 + GUNNER_TOUCH_BUFFER){
-                    if(screenX < Gdx.graphics.getWidth()/2) {
+                    if(screenX < this.getPosition().x + TextureManager.PLAYER.getWidth()/2) {
                         gunners.get(2).isFiring = !gunners.get(2).isFiring;
                     }
                     else {

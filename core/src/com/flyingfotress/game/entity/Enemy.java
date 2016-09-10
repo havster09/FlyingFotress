@@ -5,7 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.flyingfotress.game.FlyingFotress;
 import com.flyingfotress.game.TextureManager;
 
-public class Enemy extends Entity{
+public class Enemy extends EntityTexture {
     public Enemy(Vector2 pos, Vector2 direction) {
         super(TextureManager.ENEMY, pos, direction);
 

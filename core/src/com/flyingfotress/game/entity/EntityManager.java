@@ -1,21 +1,21 @@
 package com.flyingfotress.game.entity;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.flyingfotress.game.FlyingFotress;
 import com.flyingfotress.game.TextureManager;
-import com.flyingfotress.game.camera.OrthoCamera;
 import com.flyingfotress.game.screen.GameOverScreen;
 import com.flyingfotress.game.screen.ScreenManager;
 
 public class EntityManager {
-    private final Array<Entity> entities = new Array<Entity>();
+    private final Array<EntityTexture> entities = new Array<EntityTexture>();
     public final Player player;
 
-    public EntityManager(int amount, OrthoCamera camera) {
+    public EntityManager(int amount, OrthographicCamera camera) {
         player = new Player(new Vector2(Gdx.graphics.getWidth()/2 - TextureManager.PLAYER.getWidth()/2, Gdx.graphics.getHeight()/2 - TextureManager.PLAYER.getHeight()), new Vector2(0, 0), this, camera);
         for(int i = 0; i < amount; i++) {
             float x = MathUtils.random(0, FlyingFotress.WIDTH - TextureManager.ENEMY.getWidth());
@@ -25,7 +25,7 @@ public class EntityManager {
         }
     }
     public void update() {
-        for(Entity e: entities) {
+        for(EntityTexture e: entities) {
             e.update();
         }
         player.update();
@@ -34,20 +34,20 @@ public class EntityManager {
     }
 
     public void render(SpriteBatch sb) {
-        for(Entity e: entities) {
+        for(EntityTexture e: entities) {
             e.render(sb);
         }
         player.render(sb);
         // player.font.draw(sb, player.message, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
     }
 
-    public void addEntity(Entity entity) {
-        entities.add(entity);
+    public void addEntity(EntityTexture entityTexture) {
+        entities.add(entityTexture);
     }
 
     private Array<Enemy> getEnemies() {
         Array<Enemy> ret = new Array<Enemy>();
-        for(Entity e : entities) {
+        for(EntityTexture e : entities) {
             if (e instanceof Enemy) {
                 ret.add((Enemy) e);
             }
@@ -57,7 +57,7 @@ public class EntityManager {
 
     private Array<Bullet> getBullets() {
         Array<Bullet> ret = new Array<Bullet>();
-        for(Entity e : entities) {
+        for(EntityTexture e : entities) {
             if (e instanceof Bullet) {
                 ret.add((Bullet) e);
             }

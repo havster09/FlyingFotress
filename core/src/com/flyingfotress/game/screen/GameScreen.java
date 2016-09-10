@@ -1,7 +1,9 @@
 package com.flyingfotress.game.screen;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapRenderer;
@@ -21,18 +23,19 @@ public class GameScreen extends Screen {
     private TextureRegion textureRegion;
     private Rectangle textureRegionBounds1;
     private Rectangle textureRegionBounds2;
-    private OrthoCamera camera;
     private EntityManager entityManager;
     private TiledMap tiledMap;
     private MapRenderer tiledMapRenderer;
     private Texture textureBg;
     private float speed = 3f;
     private float delta = 2f;
+    private OrthographicCamera camera;
 
     @Override
     public void create() {
-        camera = new OrthoCamera();
-        camera.resize();
+        camera = new OrthographicCamera(FlyingFotress.WIDTH,FlyingFotress.HEIGHT);
+        camera.setToOrtho(false, FlyingFotress.WIDTH, FlyingFotress.HEIGHT);
+
         entityManager = new EntityManager(20, camera);
         tiledMap = new TmxMapLoader().load("MyCrappyMap.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
@@ -59,6 +62,9 @@ public class GameScreen extends Screen {
         }
 
         entityManager.update();
+
+        camera.update();
+
     }
 
     private boolean bottomBoundsReached(float delta) {
@@ -80,10 +86,8 @@ public class GameScreen extends Screen {
         sb.setProjectionMatrix(camera.combined);
         sb.begin();
 
-        sb.draw(textureRegion, textureRegionBounds1.x, textureRegionBounds1.y, Gdx.graphics.getWidth(),
-                Gdx.graphics.getHeight());
-        sb.draw(textureRegion, textureRegionBounds2.x, textureRegionBounds2.y, Gdx.graphics.getWidth(),
-                Gdx.graphics.getHeight());
+        sb.draw(textureRegion, textureRegionBounds1.x, textureRegionBounds1.y, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        sb.draw(textureRegion, textureRegionBounds2.x, textureRegionBounds2.y, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         entityManager.render(sb);
         sb.end();
@@ -91,7 +95,7 @@ public class GameScreen extends Screen {
 
     @Override
     public void resize(int width, int height) {
-        camera.resize();
+        camera.update();
     }
 
     @Override

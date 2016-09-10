@@ -1,12 +1,10 @@
 package com.flyingfotress.game.entity;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.flyingfotress.game.FlyingFotress;
 import com.flyingfotress.game.TextureManager;
 
-public class Bullet extends Entity{
+public class Bullet extends EntityTexture {
 
     public Bullet(Vector2 pos, Vector2 direction) {
         super(TextureManager.BULLET, pos, direction);
