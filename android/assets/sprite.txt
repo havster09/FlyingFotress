@@ -1,0 +1,89 @@
+sprite.png
+size: 840, 91
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+run
+  rotate: false
+  xy: 1, 1
+  size: 68, 89
+  orig: 68, 100
+  offset: 0, 0
+  index: 0
+run
+  rotate: false
+  xy: 71, 1
+  size: 68, 89
+  orig: 68, 100
+  offset: 0, 0
+  index: 2
+run
+  rotate: false
+  xy: 141, 1
+  size: 68, 89
+  orig: 68, 100
+  offset: 0, 0
+  index: 4
+run
+  rotate: false
+  xy: 211, 1
+  size: 68, 89
+  orig: 68, 100
+  offset: 0, 0
+  index: 6
+run
+  rotate: false
+  xy: 281, 1
+  size: 68, 89
+  orig: 68, 100
+  offset: 0, 0
+  index: 8
+run
+  rotate: false
+  xy: 351, 1
+  size: 68, 89
+  orig: 68, 100
+  offset: 0, 0
+  index: 10
+run
+  rotate: false
+  xy: 421, 1
+  size: 68, 89
+  orig: 68, 100
+  offset: 0, 0
+  index: 12
+run
+  rotate: false
+  xy: 491, 1
+  size: 68, 89
+  orig: 68, 100
+  offset: 0, 0
+  index: 14
+run
+  rotate: false
+  xy: 701, 1
+  size: 68, 87
+  orig: 68, 100
+  offset: 0, 0
+  index: 16
+run
+  rotate: false
+  xy: 771, 1
+  size: 68, 87
+  orig: 68, 100
+  offset: 0, 0
+  index: 18
+run
+  rotate: false
+  xy: 561, 1
+  size: 68, 89
+  orig: 68, 100
+  offset: 0, 0
+  index: 20
+run
+  rotate: false
+  xy: 631, 1
+  size: 68, 89
+  orig: 68, 100
+  offset: 0, 0
+  index: 22
