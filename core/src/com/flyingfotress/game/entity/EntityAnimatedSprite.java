@@ -1,6 +1,7 @@
 package com.flyingfotress.game.entity;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -9,17 +10,22 @@ import net.dermetfan.gdx.graphics.g2d.AnimatedSprite;
 public abstract class EntityAnimatedSprite {
     private final AnimatedSprite animatedSprite;
     protected Vector2 pos, direction;
+    protected float x, y;
 
-    public EntityAnimatedSprite(AnimatedSprite animatedSprite, Vector2 pos, Vector2 direction) {
+    public EntityAnimatedSprite(AnimatedSprite animatedSprite, Vector2 pos, Vector2 direction, float x, float y) {
         this.pos = pos;
         this.direction = direction;
         this.animatedSprite = animatedSprite;
+        this.x = x;
+        this.y = y;
     }
 
     public abstract void update();
 
     public void render(SpriteBatch sb) {
+        animatedSprite.setPosition(pos.x, pos.y);
         animatedSprite.draw(sb);
+        animatedSprite.setScale(1f,1f);
     }
 
     public Vector2 getPosition() {
@@ -35,4 +41,14 @@ public abstract class EntityAnimatedSprite {
         return new Rectangle(pos.x, pos.y - animatedSprite.getHeight(), animatedSprite.getWidth(), animatedSprite.getHeight());
     }
 
+    public boolean checkAnimationFinished() {
+        Animation animation = animatedSprite.getAnimation();
+        return animatedSprite.getTime() > animation.getAnimationDuration();
+    }
+
+    public void setNewPosition(float x, float y) {
+        pos.x = x;
+        pos.y = y;
+        animatedSprite.setTime(0f);
+    }
 }

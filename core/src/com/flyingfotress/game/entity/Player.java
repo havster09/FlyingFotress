@@ -133,7 +133,7 @@ public class Player extends EntityTexture implements InputProcessor {
 
     private void headGunnerFire(int i) {
         if (currentTimeMillis() - gunners.get(i).lastFire >= MathUtils.random(100, 350)) {
-            entityManager.addEntity(new Bullet(pos.cpy().add(TextureManager.PLAYER.getWidth() / 2, TextureManager.PLAYER.getHeight()),
+            entityManager.addEntityTexture(new Bullet(pos.cpy().add(TextureManager.PLAYER.getWidth() / 2, TextureManager.PLAYER.getHeight()),
                     new Vector2(MathUtils.random(-1, 1), 20)));
             gunners.get(i).lastFire = currentTimeMillis();
         }
@@ -141,7 +141,7 @@ public class Player extends EntityTexture implements InputProcessor {
 
     private void tailGunnerFire(int i) {
         if (currentTimeMillis() - gunners.get(i).lastFire >= MathUtils.random(50, 350)) {
-            entityManager.addEntity(new Bullet(pos.cpy().add(TextureManager.PLAYER.getWidth() / 2, 0),
+            entityManager.addEntityTexture(new Bullet(pos.cpy().add(TextureManager.PLAYER.getWidth() / 2, 0),
                     new Vector2(MathUtils.random(-1, 1), -20)));
             gunners.get(i).lastFire = currentTimeMillis();
         }
@@ -149,7 +149,7 @@ public class Player extends EntityTexture implements InputProcessor {
 
     private void leftWaistGunnerFire(int i) {
         if (currentTimeMillis() - gunners.get(i).lastFire >= MathUtils.random(50, 350)) {
-            entityManager.addEntity(new Bullet(pos.cpy().add(TextureManager.PLAYER.getWidth() / 2, TextureManager.PLAYER.getHeight()/2),
+            entityManager.addEntityTexture(new Bullet(pos.cpy().add(TextureManager.PLAYER.getWidth() / 2, TextureManager.PLAYER.getHeight()/2),
                     new Vector2(-20, MathUtils.random(-1, 1))));
             gunners.get(i).lastFire = currentTimeMillis();
         }
@@ -157,7 +157,7 @@ public class Player extends EntityTexture implements InputProcessor {
 
     private void rightWaistGunnerFire(int i) {
         if (currentTimeMillis() - gunners.get(i).lastFire >= MathUtils.random(50, 350)) {
-            entityManager.addEntity(new Bullet(pos.cpy().add(TextureManager.PLAYER.getWidth() / 2, TextureManager.PLAYER.getHeight()/2),
+            entityManager.addEntityTexture(new Bullet(pos.cpy().add(TextureManager.PLAYER.getWidth() / 2, TextureManager.PLAYER.getHeight()/2),
                     new Vector2(20, MathUtils.random(-1, 1))));
             gunners.get(i).lastFire = currentTimeMillis();
         }
