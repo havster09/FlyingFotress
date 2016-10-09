@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Timer;
 import com.flyingfotress.game.AnimatedSpriteManager;
 import com.flyingfotress.game.FlyingFotress;
 import com.flyingfotress.game.TextureManager;
@@ -19,6 +20,14 @@ import net.dermetfan.gdx.graphics.g2d.AnimatedSprite;
 public class EntityManager {
     private final Array<EntityTexture> entities_textures = new Array<EntityTexture>();
     private final Array<Flak> entities_animated_sprites = new Array<Flak>();
+    private final String[] flak_collection = {
+            "flak_a",
+            "flak_b",
+            "flak_c",
+            "flak_d",
+            "flak_e",
+            "flak_f"
+    };
     public final Player player;
 
     public EntityManager(int amount, OrthographicCamera camera) {
@@ -34,15 +43,21 @@ public class EntityManager {
 
     public void spawnFlak(int amount) {
         for(int i = 0; i < amount*2; i++) {
-            TextureAtlas textureAtlas = new TextureAtlas(Gdx.files.internal("ff08102016.atlas"));
-            Array<TextureAtlas.AtlasRegion> region = textureAtlas.findRegions("flak_e");
+            int itemNum = MathUtils.random(0,flak_collection.length-1);
+            TextureAtlas textureAtlas = new TextureAtlas(Gdx.files.internal(flak_collection[itemNum]+ ".pack"));
+            Array<TextureAtlas.AtlasRegion> region = textureAtlas.findRegions(flak_collection[itemNum]);
             Animation animation = new Animation(1 / 30f, region, Animation.PlayMode.LOOP);
-            AnimatedSprite animatedSprite = new AnimatedSprite(animation);
-            float x = MathUtils.random(0, FlyingFotress.WIDTH - AnimatedSpriteManager.FLAK.getWidth());
+            float x = MathUtils.random(0, FlyingFotress.WIDTH);
             float y = MathUtils.random(0, FlyingFotress.HEIGHT);
             float speed = 3;
-            Flak flak =  new Flak();
-            addEntityAnimatedSprite(flak);
+            final Flak flak =  new Flak(animation, new Vector2(x, y), new Vector2(0, -speed), x, y);
+            new Timer().schedule(new Timer.Task() {
+                @Override
+                public void run() {
+                    addEntityAnimatedSprite(flak);
+                }
+            }, MathUtils.random(0, 5));
+
         }
     }
 
@@ -50,7 +65,7 @@ public class EntityManager {
         for(EntityTexture et: entities_textures) {
             et.update();
         }
-        for(Flak eas: entities_animated_sprites) {
+        for(EntityAnimatedSprite eas: entities_animated_sprites) {
             eas.update();
         }
         player.update();
@@ -63,10 +78,10 @@ public class EntityManager {
             et.render(sb);
         }
 
-        for(Flak eas: entities_animated_sprites) {
+        for(EntityAnimatedSprite eas: entities_animated_sprites) {
             eas.render(sb);
             if(eas.checkAnimationFinished()) {
-                float x = MathUtils.random(0, FlyingFotress.WIDTH - AnimatedSpriteManager.FLAK.getWidth());
+                float x = MathUtils.random(0, FlyingFotress.WIDTH);
                 float y = MathUtils.random(0, FlyingFotress.HEIGHT);
                 eas.setNewPosition(x, y);
             }

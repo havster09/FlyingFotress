@@ -9,6 +9,7 @@ import net.dermetfan.gdx.graphics.g2d.AnimatedSprite;
 
 public abstract class EntityAnimatedSprite {
     private final AnimatedSprite animatedSprite;
+    private Animation animation;
     protected Vector2 pos, direction;
     protected float x, y;
 
@@ -18,6 +19,15 @@ public abstract class EntityAnimatedSprite {
         this.animatedSprite = animatedSprite;
         this.x = x;
         this.y = y;
+    }
+
+    public EntityAnimatedSprite(Animation animation, Vector2 pos, Vector2 direction, float x, float y) {
+        this.pos = pos;
+        this.direction = direction;
+        this.animation = animation;
+        this.x = x;
+        this.y = y;
+        this.animatedSprite = new AnimatedSprite(animation);
     }
 
     public abstract void update();

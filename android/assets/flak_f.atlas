@@ -1,0 +1,222 @@
+
+flak_f.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+flak_f
+  rotate: false
+  xy: 1, 855
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 0
+flak_f
+  rotate: false
+  xy: 1, 733
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 1
+flak_f
+  rotate: false
+  xy: 163, 855
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 2
+flak_f
+  rotate: false
+  xy: 1, 611
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 3
+flak_f
+  rotate: false
+  xy: 163, 733
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 4
+flak_f
+  rotate: false
+  xy: 325, 855
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 5
+flak_f
+  rotate: false
+  xy: 1, 489
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 6
+flak_f
+  rotate: false
+  xy: 163, 611
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 7
+flak_f
+  rotate: false
+  xy: 325, 733
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 8
+flak_f
+  rotate: false
+  xy: 487, 855
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 9
+flak_f
+  rotate: false
+  xy: 1, 367
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 10
+flak_f
+  rotate: false
+  xy: 163, 489
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 11
+flak_f
+  rotate: false
+  xy: 325, 611
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 12
+flak_f
+  rotate: false
+  xy: 487, 733
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 13
+flak_f
+  rotate: false
+  xy: 649, 855
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 14
+flak_f
+  rotate: false
+  xy: 1, 245
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 15
+flak_f
+  rotate: false
+  xy: 163, 367
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 16
+flak_f
+  rotate: false
+  xy: 325, 489
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 17
+flak_f
+  rotate: false
+  xy: 487, 611
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 18
+flak_f
+  rotate: false
+  xy: 649, 733
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 19
+flak_f
+  rotate: false
+  xy: 811, 855
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 20
+flak_f
+  rotate: false
+  xy: 1, 123
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 21
+flak_f
+  rotate: false
+  xy: 163, 245
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 22
+flak_f
+  rotate: false
+  xy: 325, 367
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 23
+flak_f
+  rotate: false
+  xy: 487, 489
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 24
+flak_f
+  rotate: false
+  xy: 649, 611
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 25
+flak_f
+  rotate: false
+  xy: 811, 733
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 26
+flak_f
+  rotate: false
+  xy: 1, 1
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 27
+flak_f
+  rotate: false
+  xy: 163, 123
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 28
+flak_f
+  rotate: false
+  xy: 325, 245
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 29
+flak_f
+  rotate: false
+  xy: 487, 367
+  size: 160, 120
+  orig: 160, 120
+  offset: 0, 0
+  index: 30

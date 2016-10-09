@@ -1,0 +1,26 @@
+
+textures.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+b17_top_tp
+  rotate: false
+  xy: 1, 65
+  size: 226, 157
+  orig: 226, 157
+  offset: 0, 0
+  index: -1
+fw190D_tp
+  rotate: false
+  xy: 1, 1
+  size: 63, 62
+  orig: 63, 62
+  offset: 0, 0
+  index: -1
+bullet
+  rotate: false
+  xy: 229, 214
+  size: 5, 8
+  orig: 5, 8
+  offset: 0, 0
+  index: -1

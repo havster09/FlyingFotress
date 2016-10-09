@@ -37,10 +37,10 @@ public class GameScreen extends Screen {
         camera.setToOrtho(false, FlyingFotress.WIDTH, FlyingFotress.HEIGHT);
 
         entityManager = new EntityManager(20, camera);
-        tiledMap = new TmxMapLoader().load("MyCrappyMap.tmx");
+        tiledMap = new TmxMapLoader().load("testbg.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 
-        textureBg = new Texture(Gdx.files.internal("MyCrappyMap.png"));
+        textureBg = new Texture(Gdx.files.internal("test_bg.jpg"));
 
         textureRegion = new TextureRegion(textureBg);
         textureRegionBounds1 = new Rectangle(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
