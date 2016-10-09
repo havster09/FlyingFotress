@@ -105,6 +105,6 @@
 </data>
  </layer>
  <imagelayer name="Image Layer 1">
-  <image source="../../../../test_bg.jpg" width="512" height="512"/>
+  <image source="../../../../vue/renders/mountains2.jpg" width="512" height="529"/>
  </imagelayer>
 </map>
