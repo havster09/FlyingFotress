@@ -18,7 +18,7 @@ import com.flyingfotress.game.screen.ScreenManager;
 import net.dermetfan.gdx.graphics.g2d.AnimatedSprite;
 
 public class EntityManager {
-    private final Array<EntityTexture> entities_textures = new Array<EntityTexture>();
+    private final Array<EntitySprite> entities_sprites = new Array<EntitySprite>();
     private final Array<Flak> entities_animated_sprites = new Array<Flak>();
     private final String[] flak_collection = {
             "flak_a",
@@ -36,7 +36,7 @@ public class EntityManager {
             float x = MathUtils.random(0, FlyingFotress.WIDTH - TextureManager.ENEMY.getWidth());
             float y = MathUtils.random(FlyingFotress.HEIGHT, FlyingFotress.HEIGHT * 2);
             float speed = MathUtils.random(10, 20);
-            addEntityTexture(new Enemy(new Vector2(x, y), new Vector2(0, -speed)));
+            addEntitySprite(new Enemy(new Vector2(x, y), new Vector2(0, -speed)));
         }
         spawnFlak(10);
     }
@@ -62,20 +62,21 @@ public class EntityManager {
     }
 
     public void update() {
-        for(EntityTexture et: entities_textures) {
-            et.update();
+        for(EntitySprite es: entities_sprites) {
+            es.update();
         }
         for(EntityAnimatedSprite eas: entities_animated_sprites) {
             eas.update();
         }
+
         player.update();
         checkCollisions();
         removeBulletOffScreen();
     }
 
     public void render(SpriteBatch sb) {
-        for(EntityTexture et: entities_textures) {
-            et.render(sb);
+        for(EntitySprite es: entities_sprites) {
+            es.render(sb);
         }
 
         for(EntityAnimatedSprite eas: entities_animated_sprites) {
@@ -91,8 +92,8 @@ public class EntityManager {
         // player.font.draw(sb, player.message, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
     }
 
-    public void addEntityTexture(EntityTexture entityTexture) {
-        entities_textures.add(entityTexture);
+    public void addEntitySprite(EntitySprite entitySprite) {
+        entities_sprites.add(entitySprite);
     }
 
     public void addEntityAnimatedSprite(Flak entityAnimatedSprite) {
@@ -101,7 +102,7 @@ public class EntityManager {
 
     private Array<Enemy> getEnemies() {
         Array<Enemy> ret = new Array<Enemy>();
-        for(EntityTexture e : entities_textures) {
+        for(EntitySprite e : entities_sprites) {
             if (e instanceof Enemy) {
                 ret.add((Enemy) e);
             }
@@ -111,7 +112,7 @@ public class EntityManager {
 
     private Array<Bullet> getBullets() {
         Array<Bullet> ret = new Array<Bullet>();
-        for(EntityTexture e : entities_textures) {
+        for(EntitySprite e : entities_sprites) {
             if (e instanceof Bullet) {
                 ret.add((Bullet) e);
             }
@@ -122,7 +123,7 @@ public class EntityManager {
     private void removeBulletOffScreen() {
         for(Bullet m: getBullets()) {
             if(m.checkEnd()) {
-                entities_textures.removeValue(m, false);
+                entities_sprites.removeValue(m, false);
             }
         }
     }
@@ -131,8 +132,8 @@ public class EntityManager {
         for(Enemy e: getEnemies()) {
             for(Bullet m: getBullets()) {
                 if(e.getBounds().overlaps(m.getBounds())) {
-                    entities_textures.removeValue(e, false);
-                    entities_textures.removeValue(m, false);
+                    entities_sprites.removeValue(e, false);
+                    entities_sprites.removeValue(m, false);
                     if(gameOver()) {
                         ScreenManager.setScreen(new GameOverScreen(true));
                     }

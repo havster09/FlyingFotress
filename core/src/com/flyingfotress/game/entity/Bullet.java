@@ -4,10 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.flyingfotress.game.TextureManager;
 
-public class Bullet extends EntityTexture {
+public class Bullet extends EntitySprite {
 
     public Bullet(Vector2 pos, Vector2 direction) {
-        super(TextureManager.BULLET, pos, direction);
+        super(TextureManager.BULLET_SPRITE, pos, direction);
     }
 
     @Override

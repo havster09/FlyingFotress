@@ -37,10 +37,10 @@ public class GameScreen extends Screen {
         camera.setToOrtho(false, FlyingFotress.WIDTH, FlyingFotress.HEIGHT);
 
         entityManager = new EntityManager(20, camera);
-        tiledMap = new TmxMapLoader().load("test_bg.tmx");
+        tiledMap = new TmxMapLoader().load("grass.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 
-        textureBg = new Texture(Gdx.files.internal("test_bg.jpg"));
+        textureBg = new Texture(Gdx.files.internal("grass.jpg"));
 
          textureRegion = new TextureRegion(textureBg);
         textureRegionBounds1 = new Rectangle(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());

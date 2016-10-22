@@ -5,21 +5,35 @@ filter: Nearest,Nearest
 repeat: none
 b17_top_tp
   rotate: false
-  xy: 1, 65
-  size: 226, 157
-  orig: 226, 157
+  xy: 1, 253
+  size: 320, 240
+  orig: 320, 240
+  offset: 0, 0
+  index: -1
+ki84
+  rotate: false
+  xy: 1, 11
+  size: 320, 240
+  orig: 320, 240
+  offset: 0, 0
+  index: -1
+ki84_tp
+  rotate: false
+  xy: 323, 253
+  size: 320, 240
+  orig: 320, 240
   offset: 0, 0
   index: -1
 fw190D_tp
   rotate: false
-  xy: 1, 1
+  xy: 323, 189
   size: 63, 62
   orig: 63, 62
   offset: 0, 0
   index: -1
 bullet
   rotate: false
-  xy: 229, 214
+  xy: 1, 1
   size: 5, 8
   orig: 5, 8
   offset: 0, 0

@@ -105,6 +105,6 @@
 </data>
  </layer>
  <imagelayer name="Image Layer 1">
-  <image source="test_bg.jpg" width="512" height="512"/>
+  <image source="test_bg2.png" width="512" height="2560"/>
  </imagelayer>
 </map>

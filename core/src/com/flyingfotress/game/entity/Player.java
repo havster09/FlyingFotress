@@ -18,7 +18,7 @@ import java.util.Map;
 
 import static java.lang.System.currentTimeMillis;
 
-public class Player extends EntityTexture implements InputProcessor {
+public class Player extends EntitySprite implements InputProcessor {
     public static final int ACCELERATOR_MULTIPLIER = 50;
     public static final int GUNNER_TOUCH_BUFFER = 200;
     private final OrthographicCamera camera;
@@ -29,7 +29,7 @@ public class Player extends EntityTexture implements InputProcessor {
     public BitmapFont font;
 
     public Player(Vector2 pos, Vector2 direction, EntityManager entityManager, OrthographicCamera camera) {
-        super(TextureManager.PLAYER, pos, direction);
+        super(TextureManager.PLAYER_SPRITE, pos, direction);
         this.entityManager = entityManager;
         this.camera = camera;
 
@@ -55,6 +55,7 @@ public class Player extends EntityTexture implements InputProcessor {
 
     @Override
     public void update() {
+        this.setCenter(TextureManager.PLAYER.getWidth()/2, TextureManager.PLAYER.getHeight()/2);
         float accelX = Gdx.input.getAccelerometerX();
 
         float highestRightX = -8f;
@@ -133,7 +134,7 @@ public class Player extends EntityTexture implements InputProcessor {
 
     private void headGunnerFire(int i) {
         if (currentTimeMillis() - gunners.get(i).lastFire >= MathUtils.random(100, 350)) {
-            entityManager.addEntityTexture(new Bullet(pos.cpy().add(TextureManager.PLAYER.getWidth() / 2, TextureManager.PLAYER.getHeight()),
+            entityManager.addEntitySprite(new Bullet(pos.cpy().add(TextureManager.BULLET_SPRITE.getWidth() / 2, TextureManager.BULLET_SPRITE.getHeight()),
                     new Vector2(MathUtils.random(-1, 1), 20)));
             gunners.get(i).lastFire = currentTimeMillis();
         }
@@ -141,7 +142,7 @@ public class Player extends EntityTexture implements InputProcessor {
 
     private void tailGunnerFire(int i) {
         if (currentTimeMillis() - gunners.get(i).lastFire >= MathUtils.random(50, 350)) {
-            entityManager.addEntityTexture(new Bullet(pos.cpy().add(TextureManager.PLAYER.getWidth() / 2, 0),
+            entityManager.addEntitySprite(new Bullet(pos.cpy().add(TextureManager.BULLET_SPRITE.getWidth() / 2, 0),
                     new Vector2(MathUtils.random(-1, 1), -20)));
             gunners.get(i).lastFire = currentTimeMillis();
         }
@@ -149,7 +150,7 @@ public class Player extends EntityTexture implements InputProcessor {
 
     private void leftWaistGunnerFire(int i) {
         if (currentTimeMillis() - gunners.get(i).lastFire >= MathUtils.random(50, 350)) {
-            entityManager.addEntityTexture(new Bullet(pos.cpy().add(TextureManager.PLAYER.getWidth() / 2, TextureManager.PLAYER.getHeight()/2),
+            entityManager.addEntitySprite(new Bullet(pos.cpy().add(TextureManager.BULLET_SPRITE.getWidth() / 2, TextureManager.BULLET_SPRITE.getHeight()/2),
                     new Vector2(-20, MathUtils.random(-1, 1))));
             gunners.get(i).lastFire = currentTimeMillis();
         }
@@ -157,7 +158,7 @@ public class Player extends EntityTexture implements InputProcessor {
 
     private void rightWaistGunnerFire(int i) {
         if (currentTimeMillis() - gunners.get(i).lastFire >= MathUtils.random(50, 350)) {
-            entityManager.addEntityTexture(new Bullet(pos.cpy().add(TextureManager.PLAYER.getWidth() / 2, TextureManager.PLAYER.getHeight()/2),
+            entityManager.addEntitySprite(new Bullet(pos.cpy().add(TextureManager.BULLET_SPRITE.getWidth() / 2, TextureManager.BULLET_SPRITE.getHeight()/2),
                     new Vector2(20, MathUtils.random(-1, 1))));
             gunners.get(i).lastFire = currentTimeMillis();
         }
@@ -170,9 +171,9 @@ public class Player extends EntityTexture implements InputProcessor {
             touches.get(pointer).touchY = screenY;
             touches.get(pointer).touched = true;
 
-            System.out.println(screenX + ", " + screenY + ", " + this.pos.x + ", " + this.pos.y + ", " + TextureManager.PLAYER.getHeight());
+            System.out.println(screenX + ", " + screenY + ", " + this.pos.x + ", " + this.pos.y + ", " + TextureManager.PLAYER_SPRITE.getHeight());
             Vector3 touch = new Vector3(Gdx.input.getX(),Gdx.input.getY(),0);
-            Rectangle textureBounds = new Rectangle(this.getPosition().x,this.getPosition().y + TextureManager.PLAYER.getHeight(),TextureManager.PLAYER.getWidth(),TextureManager.PLAYER.getHeight());
+            Rectangle textureBounds = new Rectangle(this.getPosition().x,this.getPosition().y + TextureManager.PLAYER_SPRITE.getHeight(),TextureManager.PLAYER_SPRITE.getWidth(),TextureManager.PLAYER_SPRITE.getHeight());
 
             if(textureBounds.contains(touch.x,touch.y))
             {
@@ -190,7 +191,7 @@ public class Player extends EntityTexture implements InputProcessor {
                     }
                 }
                 else if(screenY >  Gdx.graphics.getHeight()/2 - GUNNER_TOUCH_BUFFER && screenY < Gdx.graphics.getHeight()/2 + GUNNER_TOUCH_BUFFER){
-                    if(screenX < this.getPosition().x + TextureManager.PLAYER.getWidth()/2) {
+                    if(screenX < this.getPosition().x + TextureManager.PLAYER_SPRITE.getWidth()/2) {
                         gunners.get(2).isFiring = !gunners.get(2).isFiring;
                     }
                     else {
