@@ -1,14 +1,12 @@
 package com.flyingfotress.game.entity;
-
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.math.Vector2;
-import com.flyingfotress.game.SpriteManager;
-import com.flyingfotress.game.TextureManager;
+import com.flyingfotress.game.AnimatedSpriteManager;
 
-public class Bullet extends EntitySprite {
-
-    public Bullet(Vector2 pos, Vector2 direction) {
-        super(SpriteManager.BULLET_SPRITE, pos, direction);
+public class Bomb extends EntityAnimatedSprite{
+    public Bomb(Animation animation, Vector2 pos, Vector2 direction, float x, float y) {
+        super(animation, pos, direction, x, y);
     }
 
     @Override
@@ -20,3 +18,5 @@ public class Bullet extends EntitySprite {
         return (pos.y >= Gdx.graphics.getHeight() || pos.y < 0 || pos.x >= Gdx.graphics.getWidth() || pos.x < 0);
     }
 }
+
+

@@ -16,8 +16,4 @@ public class TextureManager {
     public static Texture PLAYER = new Texture(Gdx.files.internal("b17_top_tp.png"));
     public static Texture BULLET = new Texture(Gdx.files.internal("bullet.png"));
     public static Texture ENEMY = new Texture(Gdx.files.internal("fw190D_tp.png"));
-
-    public static Sprite PLAYER_SPRITE = textureAtlas.createSprite("b17_top_tp");
-    public static Sprite BULLET_SPRITE = textureAtlas.createSprite("bullet");
-    public static Sprite ENEMY_SPRITE = textureAtlas.createSprite("ki84_tp");
 }

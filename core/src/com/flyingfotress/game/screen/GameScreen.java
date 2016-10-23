@@ -36,7 +36,7 @@ public class GameScreen extends Screen {
         camera = new OrthographicCamera(FlyingFotress.WIDTH,FlyingFotress.HEIGHT);
         camera.setToOrtho(false, FlyingFotress.WIDTH, FlyingFotress.HEIGHT);
 
-        entityManager = new EntityManager(20, camera);
+        entityManager = new EntityManager(2, camera);
         tiledMap = new TmxMapLoader().load("grass.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 

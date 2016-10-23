@@ -33,7 +33,7 @@ public abstract class EntityAnimatedSprite {
     public abstract void update();
 
     public void render(SpriteBatch sb) {
-        animatedSprite.setPosition(pos.x, pos.y);
+        animatedSprite.setPosition(pos.x - animatedSprite.getWidth()/2, pos.y - animatedSprite.getHeight()/2);
         animatedSprite.draw(sb);
         animatedSprite.setScale(1f,1f);
     }
