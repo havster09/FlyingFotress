@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 
 public abstract class EntitySprite {
     private final Sprite sprite;
+    public Boolean isAlive;
     protected Vector2 pos, direction;
     public EntityManager entityManager;
 
@@ -15,6 +16,7 @@ public abstract class EntitySprite {
         this.sprite = sprite;
         this.pos = pos;
         this.direction = direction;
+        this.isAlive = true;
     }
 
     public abstract void update();

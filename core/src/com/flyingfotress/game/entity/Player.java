@@ -180,9 +180,9 @@ public class Player extends EntitySprite implements InputProcessor {
 
             if(textureBounds.contains(touch.x,touch.y))
             {
-                if (currentTimeMillis() - Player.lastBombDrop >= MathUtils.random(100, 350)) {
+                if (currentTimeMillis() - Player.lastBombDrop >= MathUtils.random(300, 650)) {
                     System.out.println("bomb drop");
-                    entityManager.spawnBomb(1, this.pos.x + MathUtils.random(-5, 5), this.pos.y - SpriteManager.PLAYER_SPRITE.getHeight()/4);
+                    entityManager.spawnBomb(1, this.pos.x + MathUtils.random(-50, 50), this.pos.y - SpriteManager.PLAYER_SPRITE.getHeight()/2);
                     Player.lastBombDrop = currentTimeMillis();
                 }
 

@@ -9,11 +9,15 @@ import net.dermetfan.gdx.graphics.g2d.AnimatedSprite;
 
 public abstract class EntityAnimatedSprite {
     private final AnimatedSprite animatedSprite;
+    public Boolean isAlive;
+    private float a;
+    private float b;
     private Animation animation;
     protected Vector2 pos, direction;
     protected float x, y;
 
     public EntityAnimatedSprite(AnimatedSprite animatedSprite, Vector2 pos, Vector2 direction, float x, float y) {
+        this.isAlive = true;
         this.pos = pos;
         this.direction = direction;
         this.animatedSprite = animatedSprite;
@@ -21,12 +25,15 @@ public abstract class EntityAnimatedSprite {
         this.y = y;
     }
 
-    public EntityAnimatedSprite(Animation animation, Vector2 pos, Vector2 direction, float x, float y) {
+    public EntityAnimatedSprite(Animation animation, Vector2 pos, Vector2 direction, float x, float y, float a, float b, boolean isAlive) {
+        this.isAlive = isAlive;
         this.pos = pos;
         this.direction = direction;
         this.animation = animation;
         this.x = x;
         this.y = y;
+        this.a = a;
+        this.b = b;
         this.animatedSprite = new AnimatedSprite(animation);
     }
 
@@ -35,7 +42,8 @@ public abstract class EntityAnimatedSprite {
     public void render(SpriteBatch sb) {
         animatedSprite.setPosition(pos.x - animatedSprite.getWidth()/2, pos.y - animatedSprite.getHeight()/2);
         animatedSprite.draw(sb);
-        animatedSprite.setScale(1f,1f);
+        animatedSprite.setScale(this.a,this.a);
+        animatedSprite.setRotation(this.b);
     }
 
     public Vector2 getPosition() {
@@ -60,5 +68,30 @@ public abstract class EntityAnimatedSprite {
         pos.x = x;
         pos.y = y;
         animatedSprite.setTime(0f);
+    }
+
+    public boolean checkIsAlive() {
+        return this.isAlive;
+    }
+
+    public boolean checkEnd() {
+        return (pos.y >= Gdx.graphics.getHeight() || pos.y < 0 || pos.x >= Gdx.graphics.getWidth() || pos.x < 0);
+    }
+
+    public void setTime(float time) {
+        animatedSprite.setTime(0);
+    }
+
+    public void setScale(float a, float b) {
+        this.a = a;
+        this.b = b;
+    }
+
+    public void setRotation(float rotation) {
+        this.b = rotation;
+    }
+
+    public void setAnimation(Animation animation) {
+        animatedSprite.setAnimation(animation);
     }
 }
